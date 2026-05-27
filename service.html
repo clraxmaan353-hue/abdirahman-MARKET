@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BARIILA UC Market Ultimate</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial;}
+
+body{
+background:linear-gradient(270deg,#0f0f0f,#1a1a1a,#000);
+background-size:600% 600%;
+animation:bgMove 10s infinite;
+color:#fff;
+text-align:center;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* HEADER */
+header{
+padding:20px;
+font-size:28px;
+color:#ffcc00;
+text-shadow:0 0 15px #ffcc00;
+}
+
+/* HERO */
+.hero{
+padding:50px 20px;
+}
+
+.hero h1{
+font-size:36px;
+margin-bottom:10px;
+}
+
+/* PRODUCTS */
+.container{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+padding:20px;
+}
+
+.card{
+background:#1a1a1a;
+padding:20px;
+border-radius:15px;
+width:220px;
+box-shadow:0 0 15px rgba(255,204,0,0.3);
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.1);
+box-shadow:0 0 25px #ffcc00;
+}
+
+button{
+margin-top:10px;
+padding:10px;
+border:none;
+border-radius:10px;
+background:#25D366;
+color:#fff;
+cursor:pointer;
+}
+
+/* CART */
+.cart{
+background:#111;
+padding:20px;
+margin:20px;
+border-radius:10px;
+}
+
+.cart h2{color:#ffcc00;}
+
+.total{
+font-size:20px;
+margin-top:10px;
+}
+
+.checkout{
+margin-top:15px;
+background:#ffcc00;
+color:#000;
+}
+
+/* PAYMENT */
+.payment{
+background:#111;
+margin:20px;
+padding:15px;
+border-radius:10px;
+}
+
+/* FOOTER */
+footer{
+padding:15px;
+color:#aaa;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>🔥 BARIILA MARKET🔥</header>
+
+<section class="hero">
+<h1>UC Cheapest in Somalia 💸</h1>
+<p>Fast Delivery ⚡ | Trusted Service ✅</p>
+</section>
+
+<div class="container">
+
+<div class="card">
+<h2>3600UC</h2>
+<p>$57</p>
+<button onclick="addToCart('3600',57)">Add</button>
+</div>
+
+<div class="card">
+<h2>350UC</h2>
+<p>$5</p>
+<button onclick="addToCart('350',5)">Add</button>
+</div>
+
+<div class="card">
+<h2>1800 UC</h2>
+<p>$27</p>
+<button onclick="addToCart('1800 UC',27)">Add</button>
+</div>
+
+<div class="card">
+<h2>60 UC</h2>
+<p>$1.1</p>
+<button onclick="addToCart('60 UC',1.1)">Add</button>
+</div>
+
+</div>
+
+<div class="cart">
+<h2>🛒 Your Cart</h2>
+<ul id="cartList"></ul>
+<div class="total">Total: $<span id="total">0</span></div>
+<button class="checkout" onclick="checkout()">Order via WhatsApp</button>
+</div>
+
+<div class="payment">
+<h2>💳 Payment Methods</h2>
+<p>EVC Plus / edahab / Hormuud</p>
+<p>📞 0613520237</p>
+<p>📞 0623520237</p>
+</div>
+
+<footer>
+© 2026 BARIILA MARKET | All in One
+</footer>
+
+<script>
+let cart=[];
+let total=0;
+
+function addToCart(name,price){
+cart.push({name,price});
+total+=price;
+renderCart();
+}
+
+function renderCart(){
+let list=document.getElementById("cartList");
+list.innerHTML="";
+cart.forEach(item=>{
+let li=document.createElement("li");
+li.textContent=item.name+" - $"+item.price;
+list.appendChild(li);
+});
+document.getElementById("total").textContent=total.toFixed(2);
+}
+
+function checkout(){
+if(cart.length==0){
+alert("Cart is empty!");
+return;
+}
+let message="Salaam, waxaan rabaa:\n";
+cart.forEach(item=>{
+message+=item.name+" - $"+item.price+"\n";
+});
+message+="Total: $"+total.toFixed(2);
+
+let url="https://wa.me/252613520237?text="+encodeURIComponent(message);
+window.open(url,"_blank");
+}
+</script>
+
+</body>
+</html>
